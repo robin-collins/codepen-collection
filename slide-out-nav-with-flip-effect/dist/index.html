@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Slide-out nav with flip effect</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <nav>
+	<button type="button" id="btn-nav-toggle" aria-expanded="true" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+		<!--Menu-->
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+			<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M4 6l16 0" />
+				<path d="M4 12l16 0" />
+				<path d="M4 12l16 0" />
+				<path d="M4 18l16 0" />
+			</g>
+		</svg>
+	</button>
+
+	<ul id="nav-menu" role='list' aria-labelledby="btn-nav-toggle" aria-hidden="false">
+		<li style="--i: 1;"><a href="#about"><span>About Us</span></a></li>
+		<li style="--i: 2;"><a href="#products"><span>Products</span></a></li>
+		<li style="--i: 3;"><a href="#portfolio"><span>Portfolio</span></a></li>
+		<li style="--i: 4;"><a href="#services"><span>Services</span></a></li>
+		<li style="--i: 5;"><a href="faq"><span>FAQ</span></a></li>
+		<li style="--i: 6;"><a href="#contact"><span>Contact</span></a></li>
+	</ul>
+
+</nav>
+<hgroup>
+	<h1>Slideout nav with Flip effect</h1>
+</hgroup>
+
+<section id="about">
+	<h2>About Us</h2>
+</section>
+<section id="products">
+	<h2>Products</h2>
+</section>
+<section id="portfolio">
+	<h2>Portfolio</h2>
+</section>
+<section id="services">
+	<h2>Services</h2>
+</section>
+<section id="faq">
+	<h2>FAQ</h2>
+</section>
+<section id="contact">
+	<h2>Contact</h2>
+</section>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

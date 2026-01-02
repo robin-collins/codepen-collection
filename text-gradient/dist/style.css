@@ -1,0 +1,16 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #141826;
+}
+.text {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 100px;
+  font-weight: 600;
+  background: linear-gradient(to right, #ffb95a, #b321de, #44adfb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

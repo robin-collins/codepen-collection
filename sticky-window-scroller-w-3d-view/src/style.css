@@ -1,0 +1,610 @@
+@import url('https://unpkg.com/normalize.css') layer(normalize);
+
+@layer normalize, base, demo, explode, transitions, intel;
+
+@layer intel {
+
+  header {
+    position: relative;
+  }
+  .arrow {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 0.875rem;
+    position: absolute;
+    /* left: calc(100% + 1rem); */
+    /* top: 65%; */
+    opacity: 0.7;
+    color: canvasText;
+    pointer-events: none;
+
+
+    &.arrow--detail {
+      opacity: 0;
+      transition: opacity 0.26s ease-out;
+      bottom: 20%;
+      left: 25%;
+      color: hsl(0 0% 0%);
+      scale: 1.25;
+
+      svg {
+        left: 90%;
+        scale: -0.8;
+        rotate: 160deg
+      }
+    }
+    &.arrow--instruction {
+      bottom: 20%;
+      right: 35%;
+      scale: 1.25;
+
+     span {
+      display: inline-block;
+      rotate: 15deg;
+     }
+
+      svg {
+        top: 100%;
+        rotate: -15deg;
+      }
+      /* translate: -50% 0; */
+    }
+
+    span {
+      white-space: nowrap;
+    }
+    svg {
+      bottom: calc(100% + 10px);
+      position: absolute;
+      rotate: 80deg;
+      translate: -50% 0;
+      scale: -1 -1;
+      left: 0;
+      width: 60px;
+    }
+  }
+
+  .arrow--detail {
+    transition: opacity 0.5s 0s;
+  }
+  [data-explode='true'] .arrow--detail {
+    opacity: 0.7;
+    transition: opacity 0.5s 1s;
+  }
+
+}
+
+@layer transitions {
+  .dummy {
+    transform: translate3d(0, 0, 0);
+  }
+  .stickies .frame {
+    transform: translate3d(0, 100%, 0);
+  }
+  .stickies .backdrop {
+    transform: translate3d(0, 100%, 0);
+  }
+  
+  /* unexploded transitions */
+  .scene {
+    transition: transform 1s 1s;
+  }
+  .container .window .frame {
+    overflow: hidden;
+  }
+  .container .backdrop-shadow::before {
+    transition: opacity 1s, translate 1s, filter 1s;
+  }
+  .stickies .frame::before {
+    transition: opacity 1s;
+  }
+  .stickies,
+  .dummy,
+  .stickies .frame,
+  .stickies .backdrop {
+    transition: transform 1s;
+  }
+
+  .stickies .backdrop__track img,
+  .backdrop__frame {
+    transition-property: opacity, filter, translate;
+    transition-duration: 1s;
+  }
+
+  [data-explode='true'] .scene {
+    transform: rotateX(-20deg) rotateY(45deg) scale(0.4) translate3d(0, 0, -150px);
+  }
+  .container .backdrop-shadow {
+    opacity: 0;
+    transition: opacity 0.1s 1s;
+  }
+  [data-explode='true'] .container .backdrop-shadow {
+    opacity: 1;
+    transition: opacity 0s 1s;
+  }
+  [data-explode='true'] .container .backdrop-shadow::before {
+    opacity: 0.26;
+    translate: -20% 30%;
+    filter: blur(30px);
+  }
+  [data-explode='true'] :is(.dummy, .stickies) {
+    opacity: 1;
+  }
+  [data-explode='true'] .stickies .frame::before {
+    opacity: 0;
+  }
+  [data-explode='true'] {
+    .scene {
+      transition: transform 1s;
+    }
+    .container .backdrop-shadow::before {
+      transition: opacity 1s 1s, translate 1s 1s, filter 1s 1s;
+    }
+    .stickies,
+    .dummy,
+    .stickies .frame,
+    .stickies .backdrop {
+      transition: transform 1s 1s;
+    }
+    .stickies .frame::before {
+      transition: opacity 1s 1s;
+    }
+    .backdrop__frame {
+      opacity: 0.1;
+      filter: blur(30px);
+      translate: -20% 30%;
+      transition-delay: 1s;
+    }
+    .stickies .backdrop__track img {
+      opacity: 0.2;
+      filter: grayscale(1) brightness(0) blur(20px);
+      translate: -25% 50%;
+      transition-delay: 1s;
+    }
+    .dummy {
+      transform: translate3d(0, 0, 200px);
+    }
+    .stickies .frame {
+      transform: translate3d(0, 100%, 300px);
+    }
+    .stickies .backdrop {
+      transform: translate3d(0, 100%, 100px);
+    }
+  }
+
+  [data-collapsed='true'] :is(.stickies, .dummy) {
+    clip-path: inset(0 16px 0 0);
+  }
+}
+
+@layer explode {
+  *, *::before, *::after {
+    transform-style: preserve-3d;
+  }
+
+  :root {
+    overflow: hidden;
+    timeline-scope: --content, --main;
+  }
+  
+  body {
+    background: light-dark(hsl(0 0% 80%), hsl(0 0% 90%));
+    perspective: 1400px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+  }
+
+  .scene {
+    transform-style: preserve-3d;
+    height: 100vh;
+    width: 100%;
+    background: light-dark(#fff, #000);
+  }
+  .container main {
+    view-timeline: --main;
+  }
+
+  .stickies {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    
+    .frame, .backdrop {
+      animation-name: frame-entry, frame-exit;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-timeline: --main;
+      animation-range: entry, exit;
+    }
+    .backdrop {
+      height: 100vh;
+      overflow: hidden;
+
+      .backdrop__frame {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        opacity: 0.8;
+        filter: blur(0px);
+        translate: 0 0;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          inset: calc(var(--frame) * 1.5) var(--frame);
+          outline: calc(var(--frame) * 4) solid hsl(0 0% 0%);
+          border-radius: calc(var(--radius) * 1px);
+        }
+      }
+      .backdrop__track {
+        margin-top: calc(var(--margin) * 1vh);
+        display: grid;
+        place-items: center;
+
+        div {
+          min-height: calc(var(--height) * 1vh);
+          display: grid;
+          place-items: center;
+          width: 100%;
+        }
+      }
+
+      img {
+        max-height: 75cqb;
+        width: 75%;
+        object-fit: contain;
+        filter: grayscale(1) brightness(0) blur(0px);
+        opacity: 0.8;
+      }
+    }
+  }
+  
+  .dummy {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    pointer-events: none;
+    animation: scroll both linear;
+    animation-timeline: --content;
+    
+    p, h2, header, footer {
+      opacity: 0;
+    }
+  }
+  
+  .container {
+    transform-style: preserve-3d;
+    scroll-snap-type: y proximity;
+    height: 100%;
+    overflow: auto;
+    scroll-timeline: --content;
+  }
+
+  .backdrop__track {
+    --destination: calc(-100% + (var(--height) * 1vh));
+    animation: scroll both linear;
+    animation-timeline: --main;
+    animation-range: entry 100% contain 100%;
+  }
+
+  @keyframes scroll {
+    to {
+      translate: 0 var(--destination, calc(-100% + 100vh));
+    }
+  }
+  @keyframes frame-entry {
+    to {
+      translate: 0 -100%;
+    }
+  }
+  @keyframes frame-exit {
+    to {
+      translate: 0 -200%;
+    }
+  }
+}
+
+@layer demo {
+  :root {
+    --height: 60;
+    --margin: calc((100 - var(--height)) * 0.5);
+    --frame: 6vh;
+    --radius: 24;
+  }
+  html {
+    scroll-snap-type: y proximity;
+    scrollbar-color: canvasText #0000;
+  }
+  h1.fluid {
+    --font-level: 6;
+    font-style: italic;
+    
+    span:last-of-type {
+      font-weight: 300;
+    }
+  }
+  .container {
+    width: 100%;
+  }
+
+  .backdrop, .window {
+    grid-column: 2;
+    grid-row: 1;
+    z-index: -1;
+    
+    grid-row: 1 / -1;
+    position: sticky;
+    top: 0;
+    /* height: 100vh; */
+
+  }
+
+  .backdrop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    background: url(https://assets.codepen.io/605876/geo-backdrop.png?format=auto&quality=100);
+    background-size: cover;
+    background-position: 75% 50%;
+    filter: saturate(0.5);
+  }
+
+  .window {
+    z-index: 2;
+    background: #0000;
+    pointer-events: none;
+    /* height: 100vh; */
+
+    .frame {
+      position: absolute;
+      inset: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: #0000;
+      outline: 1px solid light-dark(#fff, #000);
+
+      &::before {
+        content: '';
+        inset: calc(var(--frame) * 1.5) var(--frame);
+        position: absolute;
+        border-radius: calc(var(--radius) * 1px);
+        box-shadow: 0 0 calc(var(--radius) * 1px) 0px light-dark(hsl(0 0% 20%), #000) inset;
+      }
+
+      &::after {
+        content: '';
+        background: #0000;
+        position: absolute;
+        inset: calc(var(--frame) * 1.5) var(--frame);
+        outline: calc(var(--frame) * 4) solid light-dark(#fff, #000);
+        border-radius: calc(var(--radius) * 1px);
+      }
+    }
+  }
+
+  .backdrop-shadow {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .container .backdrop-shadow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: hsl(0 0% 0%);
+    z-index: 30;
+    border-radius: 0;
+    box-shadow: none;
+    height: 100vh;
+    translate: 0 0;
+  }
+  
+  header {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+  }
+  .footer {
+    position: relative;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+
+    .fluid {
+      --font-level: 4;
+      font-weight: 600;
+    }
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    opacity: 0.7;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  main {
+    display: grid;
+    grid-template-columns: 0.65fr 1fr;
+    width: 100%;
+    padding-bottom: calc(var(--margin) * 1vh);
+  }
+  main section {
+    z-index: 1;
+    article {
+      padding: 1.25rem 0 1.25rem 4.5rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+    p {
+      font-size: 1.25rem;
+      line-height: 1.5;
+      font-weight: 300;
+      text-wrap: balance;
+      margin: 0;
+    }
+    h2 {
+      --font-level: 2;
+      text-wrap: balance;
+      margin: 0;
+      font-weight: 400;
+    }
+    div:first-of-type {
+      display: grid;
+      place-items: center;
+    }
+    div:last-of-type {
+      display: grid;
+      place-items: center;
+      height: 100%;
+      width: 100%;
+    }
+    img {
+      max-height: 75cqb;
+      width: 75%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 4px hsl(0 0% 0% / 0.3));
+    }
+    &:first-of-type {
+      grid-row: 1;
+      margin-top: calc(var(--margin) * 1vh);
+    }
+    
+    scroll-snap-align: center;
+    grid-column: 1 / -1;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: calc(var(--height) * 1vh);
+    grid-template-columns: subgrid;
+  }
+}
+
+@layer base {
+  :root {
+    --font-size-min: 16;
+    --font-size-max: 20;
+    --font-ratio-min: 1.2;
+    --font-ratio-max: 1.33;
+    --font-width-min: 375;
+    --font-width-max: 1500;
+  }
+
+  html {
+    color-scheme: light dark;
+  }
+
+  [data-theme='light'] {
+    color-scheme: light only;
+  }
+
+  [data-theme='dark'] {
+    color-scheme: dark only;
+  }
+
+  :where(.fluid) {
+    --fluid-min: calc(
+      var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
+    );
+    --fluid-max: calc(
+      var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
+    );
+    --fluid-preferred: calc(
+      (var(--fluid-max) - var(--fluid-min)) /
+        (var(--font-width-max) - var(--font-width-min))
+    );
+    --fluid-type: clamp(
+      (var(--fluid-min) / 16) * 1rem,
+      ((var(--fluid-min) / 16) * 1rem) -
+        (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+        (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+      (var(--fluid-max) / 16) * 1rem
+    );
+    font-size: var(--fluid-type);
+  }
+
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: light-dark(#fff, #000);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-family: 'SF Pro Text', 'SF Pro Icons', 'AOS Icons', 'Helvetica Neue',
+      Helvetica, Arial, sans-serif, system-ui;
+  }
+
+  .scene::before {
+    --size: 45px;
+    --line: color-mix(in hsl, canvasText, transparent 80%);
+    content: '';
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: linear-gradient(
+          90deg,
+          var(--line) 1px,
+          transparent 1px var(--size)
+        )
+        calc(var(--size) * 0.36) 50% / var(--size) var(--size),
+      linear-gradient(var(--line) 1px, transparent 1px var(--size)) 0%
+        calc(var(--size) * 0.32) / var(--size) var(--size);
+    mask: linear-gradient(-60deg, transparent 70%, white);
+    top: 0;
+    transform-style: flat;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .bear-link {
+    color: canvasText;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    width: 48px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    opacity: 0.8;
+  }
+
+  :where(.x-link, .bear-link):is(:hover, :focus-visible) {
+    opacity: 1;
+  }
+
+  .bear-link svg {
+    width: 75%;
+  }
+
+  /* Utilities */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+div.tp-dfwv {
+  width: 256px;
+  position: fixed;
+  z-index: 999999;
+}

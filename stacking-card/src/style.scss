@@ -1,0 +1,61 @@
+@function pxToRem($pixel) {
+  @return $pixel / 16 + rem;
+}
+
+:root {
+  --black: #1f1f1f;
+  --white: #fff;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+main {
+  padding: pxToRem(50) 0;
+}
+
+h1 {
+  color: var(--white);
+  font-size: clamp(3.125rem, 17.321vw + -1.357rem, 12.5rem);
+  line-height: clamp(4.688rem, 21.363vw + -0.84rem, 16.25rem);
+  margin: pxToRem(100) 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.848vw + 1.022rem, 2.5rem);
+  line-height: clamp(2.25rem, 1.848vw + 1.772rem, 3.25rem);
+}
+
+.stacking {
+  position: relative;
+}
+
+.stacking__card {
+  background-color: var(--white);
+  border-radius: pxToRem(32);
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: var(--whatwedo-gap);
+  margin: 25vh auto;
+  max-width: pxToRem(1020);
+  padding: pxToRem(32) pxToRem(32) 0;
+}
+
+.stacking__content {
+  font-size: pxToRem(18);
+  margin: pxToRem(20) 0;
+  padding-bottom: pxToRem(20);
+}
+
+.container {
+  max-width: pxToRem(800);
+  margin: 0 auto;
+}
+
+p {
+  margin: pxToRem(20) 0;
+}

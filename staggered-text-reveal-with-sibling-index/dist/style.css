@@ -1,0 +1,83 @@
+{ margin: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: #111;
+  display: grid;
+  place-items: center;
+  font-family: system-ui, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 20px;
+  font-size: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #fff;
+  margin-bottom: 40px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #6431f7;
+}
+
+.input::placeholder {
+  color: #555;
+}
+
+.reveal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.reveal span {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.4s ease forwards;
+  animation-delay: calc(sibling-index() * 0.1s);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sub {
+  margin-top: 60px;
+  color: #444;
+  font-size: 0.85rem;
+}
+
+.sub code {
+  color: #6431f7;
+  background: #1a1a1a;
+  padding: 2px 6px;
+}
+
+.cr {
+  position: fixed;
+  bottom: 12px;
+  right: 14px;
+  font-size: 10px;
+  color: #333;
+  text-decoration: none;
+}
+
+.cr:hover { color: #555; }

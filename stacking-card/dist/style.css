@@ -1,0 +1,57 @@
+:root {
+  --black: #1f1f1f;
+  --white: #fff;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+main {
+  padding: 3.125rem 0;
+}
+
+h1 {
+  color: var(--white);
+  font-size: clamp(3.125rem, 17.321vw + -1.357rem, 12.5rem);
+  line-height: clamp(4.688rem, 21.363vw + -0.84rem, 16.25rem);
+  margin: 6.25rem 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.848vw + 1.022rem, 2.5rem);
+  line-height: clamp(2.25rem, 1.848vw + 1.772rem, 3.25rem);
+}
+
+.stacking {
+  position: relative;
+}
+
+.stacking__card {
+  background-color: var(--white);
+  border-radius: 2rem;
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: var(--whatwedo-gap);
+  margin: 25vh auto;
+  max-width: 63.75rem;
+  padding: 2rem 2rem 0;
+}
+
+.stacking__content {
+  font-size: 1.125rem;
+  margin: 1.25rem 0;
+  padding-bottom: 1.25rem;
+}
+
+.container {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+p {
+  margin: 1.25rem 0;
+}

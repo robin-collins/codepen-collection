@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.spacer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.hero-section {
+  position: relative;
+  height: 300vh;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.position {
+  position: absolute;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+.pos1 {
+  top: 10%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+}
+
+.pos2 {
+  top: 50%;
+  right: 15%;
+  width: 400px;
+  height: 300px;
+}
+
+.pos3 {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 250px;
+}
+
+.animated-image {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.control-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  min-width: 300px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+}
+
+.control-panel.minimized {
+  min-width: auto;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.control-panel.minimized:hover {
+  background: rgba(30, 30, 30, 0.95);
+}
+
+.control-panel.minimized .panel-content {
+  display: none;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  column-gap: 16px;
+}
+
+.control-panel.minimized .panel-header {
+  margin-bottom: 0;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #00ff88;
+}
+
+.control-panel.minimized .panel-header h3 {
+  font-size: 14px;
+}
+
+.minimized-hint {
+  display: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.control-panel.minimized .minimized-hint {
+  display: inline;
+}
+
+.toggle-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 18px;
+  user-select: none;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00ff88;
+  transform: rotate(90deg);
+}
+
+.toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.control-point-values {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.control-point-values .cp-group {
+  margin-bottom: 10px;
+}
+
+.control-point-values .cp-label {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.control-point-values .cp-value {
+  color: #667eea;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00ff88;
+}
+
+.button.primary {
+  background: #00ff88;
+  color: #0a0a0a;
+  border-color: #00ff88;
+}
+
+.button.primary:hover {
+  background: #00dd77;
+}
+
+.instructions {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+.svg-control-point {
+  cursor: grab;
+  transition: r 0.2s;
+}
+
+.svg-control-point:hover {
+  r: 8;
+}
+
+.svg-control-point:active {
+  cursor: grabbing;
+}
+
+.svg-control-point.dragging {
+  r: 10;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00ff88;
+  color: #0a0a0a;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .control-panel {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+
+  .control-panel.minimized {
+    left: auto;
+    right: 10px;
+  }
+
+  .pos1 {
+    width: 120px;
+    height: 120px;
+  }
+  .pos2 {
+    width: 250px;
+    height: 200px;
+  }
+  .pos3 {
+    width: 150px;
+    height: 150px;
+  }
+}

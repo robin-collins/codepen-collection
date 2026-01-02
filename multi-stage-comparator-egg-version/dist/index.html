@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Multi-Stage Comparator [Egg Version]</title>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no"><link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <main>
+  <article>
+    <section class="intro">
+      <h1>CSS Scroll-Driven Multi-Stage Comparator</h1>
+      <p>
+        A multi-stage image comparator driven by scroll position using CSS
+        <code>scroll-timeline</code> and <code>animation-range</code>. The system uses
+        <code>sibling-index()</code> and <code>sibling-count()</code> to calculate layer
+        timing and stacking order automatically - add or remove image layers and the CSS
+        recalculates z-index, clip-path windows, and divider synchronization without
+        manual class numbering.
+      </p>
+      <p>
+        The percentage counter is calculated in CSS using <code>@property</code> with
+        scroll-driven animations. JavaScript handles section offset measurement,
+        percentage display formatting, velocity-based wheel and touchpad smoothing,
+        and interactive stage navigation with click-to-jump indicators.
+      </p>
+      <p><small>Note: Images generated with the "thing" (AI) and curated by @me as part of <a href="https://www.linkedin.com/posts/luis-martinez-lr_creativeprocess-collage-generativeart-activity-7341093878554324992-NEW9/" target="_blank" rel="noopener">The Beauty of Scrambled Prompts</a> and <a href="https://www.linkedin.com/posts/luis-martinez-lr_no-fixed-recipe-just-collisions-accidents-activity-7364286262096142336-9Exj/" target="_blank" rel="noopener">Tiny Worlds Accidents</a>.</small></p>
+    </section>
+    <section>
+      <p class="scroll-indicator">Scroll down ↓</p>
+    </section>
+    <section class="scroll-section">
+      <div class="comparator-container">
+        <div class="comparator-wrapper">
+          <div class="comparator">
+            <div class="comparison-percentage"></div>
+            <div class="image-layers">
+              <div class="image-layer">
+                <picture>
+                  <source media="(max-width: 48em)" srcset="https://lessrain.com/dev/images-2025/scroll/820/lr-scroll-img-01-820x984.webp">
+                  <img src="https://lessrain.com/dev/images-2025/scroll/1024/lr-scroll-img-01-1024x683.webp" decoding="async" fetchpriority="high" alt="Stage 1">
+                </picture>
+                <div class="comparator-overlay">
+                  <span class="label">Stage 1</span>
+                  <div class="image-text">
+                    <h2>Beach Origin</h2>
+                    <h3>— Turquoise Shoreline</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="image-layer">
+                <picture>
+                  <source media="(max-width: 48em)" srcset="https://lessrain.com/dev/images-2025/scroll/820/lr-scroll-img-02-820x984.webp">
+                  <img src="https://lessrain.com/dev/images-2025/scroll/1024/lr-scroll-img-02-1024x683.webp" decoding="async" fetchpriority="high" alt="Stage 2">
+                </picture>
+                <div class="comparator-overlay">
+                  <span class="label">Stage 2</span>
+                  <div class="image-text">
+                    <h2>Beach Evolution</h2>
+                    <h3>— Surreal Egg-Shaped</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="image-layer">
+                <picture>
+                  <source media="(max-width: 48em)" srcset="https://lessrain.com/dev/images-2025/scroll/820/lr-scroll-img-01-820x984.webp">
+                  <img src="https://lessrain.com/dev/images-2025/scroll/1024/lr-scroll-img-01-1024x683.webp" decoding="async" fetchpriority="high" alt="Stage 3">
+                </picture>
+                <div class="comparator-overlay">
+                  <span class="label">Stage 3</span>
+                  <div class="image-text">
+                    <h2>Beach Final</h2>
+                    <h3>— Full Circle</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider-lines">
+              <div class="divider-line"></div>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <p class="scroll-indicator">Scroll up ↑</p>
+    </section>
+    <section class="spacer"></section>
+  </article>
+</main>
+<footer>
+  <div class="links-layer">
+    <div class="links">
+      <a href="https://www.lessrain.com" target="_blank" rel="noopener">Less Rain GmbH</a>
+      <a href="https://codepen.io/collection/vOBVrG" target="_top">Codepen Challenges Collection</a>
+    </div>
+  </div>
+</footer>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Custom cursor effects with :has()</title>
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+<link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <div class="demo">
+  <div class="demo__elements">
+    <a href="#!" class="demo__button">Default</a>
+
+    <a href="#!" class="demo__button cursor-read">Word</a>
+
+    <button href="#!" class="demo__button cursor-icon">Icon</button>
+  </div>
+</div>
+
+<div class="cursor">
+  <div class="cursor__pointer cursor__pointer--default"></div>
+  <div class="cursor__pointer cursor__pointer--action cursor__pointer--read">
+    View
+  </div>
+  <div class="cursor__pointer cursor__pointer--action cursor__pointer--icon">
+    <svg
+      class="icon icon-plus cursor__icon"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+    >
+      <g id="Group_1" data-name="Group 1" transform="translate(-0.75 -0.75)">
+        <line
+          id="Line_1"
+          data-name="Line 1"
+          class="icon-plus-line"
+          y2="10"
+          transform="translate(10.75 5.75)"></line>
+        <line
+          id="Line_2"
+          data-name="Line 2"
+          class="icon-plus-line"
+          y2="10"
+          transform="translate(15.75 10.75) rotate(90)"></line>
+      </g>
+    </svg>
+  </div>
+</div>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

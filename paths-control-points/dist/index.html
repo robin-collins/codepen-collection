@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Paths &amp; Control Points</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Curved Path - Drag Control Points</title>
+
+  </head>
+  <body>
+    <div class="spacer">
+      <p>↓ Scroll Down</p>
+    </div>
+    <div class="hero-section" data-section="hero">
+      <div class="position pos1" data-pos="1">Position 1</div>
+      <div class="position pos2" data-pos="2">Position 2</div>
+      <div class="position pos3" data-pos="3">Position 3</div>
+      <div class="animated-image" data-image="animated"></div>
+    </div>
+
+    <div class="spacer">
+      <p>↑ Scroll Back</p>
+    </div>
+
+    <div class="control-panel" id="controlPanel">
+      <div class="panel-header">
+        <h3>🎨 Control Points<span class="minimized-hint">(Click + to expand)</span></h3>
+        <button class="toggle-btn" onclick="togglePanel()" id="toggleBtn">−</button>
+      </div>
+      <div class="panel-content">
+        <div class="instructions">
+          Drag the green control points (CP1-CP4) to adjust the curve.<br> The values update in real-time. Press <strong>H</strong> to hide/show this panel.
+        </div>
+        <div class="control-point-values" id="values">
+          <!-- Values will be inserted here -->
+        </div>
+        <button class="button primary" onclick="copyValues()">📋 Copy Values</button>
+        <button class="button" onclick="resetToDefault()">🔄 Reset to Default</button>
+        <button class="button" onclick="togglePath()">👁️ Toggle Path</button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <!-- GSAP and Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+
+  </body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

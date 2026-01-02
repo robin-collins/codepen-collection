@@ -1,0 +1,70 @@
+html { height: 100vh; display: grid }
+body { margin: auto }
+@property --a-width {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 87;
+}
+@property --b-width {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 112;
+}
+@property --a-weight {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 300;
+}
+@property --b-weight {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 900;
+}
+.type { font-size: 60px }
+.merriweather {
+  --animation-timing: 2s;
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  -webkit-animation-duration: var(--animation-timing);
+          animation-duration: var(--animation-timing);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(.5, 0, .5, 1);
+          animation-timing-function: cubic-bezier(.5, 0, .5, 1);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-name: changeFont;
+          animation-name: changeFont;
+  will-change: font-weight, font-variation-settings;
+}
+.merriweather-a {
+  font-weight: var(--a-weight);
+  font-variation-settings:
+    "wdth" var(--a-width);
+}
+.merriweather-b {
+  font-weight: var(--b-weight);
+  font-variation-settings:
+    "wdth" var(--b-width);
+}
+
+@-webkit-keyframes changeFont {
+  to {
+    --a-weight: 900;
+    --a-width: 112;
+    --b-weight: 300;
+    --b-width: 87;
+  }
+}
+
+@keyframes changeFont {
+  to {
+    --a-weight: 900;
+    --a-width: 112;
+    --b-weight: 300;
+    --b-width: 87;
+  }
+}
